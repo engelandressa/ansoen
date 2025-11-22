@@ -1,9 +1,9 @@
-/*.kaisei-decol-regular {
-  font-family: "Kaisei Decol", serif;
-  font-weight: 400;
-  font-style: normal;
+:root {
+    --clara: #f9c9bd !important;
+    --media: #f9b6ad !important;
+    --destaque: #f26a6c !important;
+    --escura: #ae5250 !important;
 }
-*/
 
 html {
     scroll-behavior: smooth;
@@ -13,36 +13,93 @@ section {
     padding: 60px 0;
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
 }
 
-#home {
-    /*imagem de fundo no home*/
-    height: 100vh;
-    background: url("../img/background-kitsune-ansoen.png") center center no-repeat;
-    background-size: cover;
-}
 
 #home h1 {
     font-family: "Kaisei Decol", serif;
-    font-size: 4rem;
+    font-size: 3rem;
 }
 
 #home p {
     font-size: 1.5rem;
 }
 
-#about {
-    height: 100vh;
+/* slideshow */
+@keyframes slideShow {
+    0% {
+        background-image: url("../img/caderno-planner-agenda-atilar-artesanal-kimono-1.png");
+    }
+
+    45% {
+        background-image: url("../img/caderno-planner-agenda-atilar-artesanal-kimono-2.png");
+    }
+
+    75% {
+        background-image: url("../img/caderno-planner-agenda-atilar-artesanal-kimono-3.png");
+    }
+
+    100% {
+        background-image: url("../img/caderno-planner-agenda-atilar-artesanal-kimono-1.png");
+    }
 }
 
-#social {
+#home {
+    position: relative;
     height: 100vh;
+    color: #000;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    background-size: cover;
+    background-position: center;
+    animation: slideShow 25s infinite alternate ease-in-out;
 }
 
-#contact {
+.card-blur {
+    background: rgba(247, 247, 247, 0.55);
+    /* caixa branca com transparência */
+    backdrop-filter: blur(8px);
+    /* desfoca o fundo */
+    -webkit-backdrop-filter: blur(8px);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    display: inline-block;
+    width: 1100px;
+    margin: 1.5rem;
+}
+
+/* Padding padrão (mobile) */
+.card-blur {
+    padding: 1.5rem;
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    background: rgba(247, 247, 247, 0.55);
+}
+
+/* Desktop */
+@media (min-width: 769px) {
+    .card-blur {
+        padding: 5rem 6rem;
+        /* aumente como quiser */
+    }
+}
+
+
+#sobre,
+#onde,
+#contato,
+#produto {
     height: 100vh;
+    justify-content: center;
+    text-align: center;
+}
+
+#sobre h2 {
+    font-family: "Kaisei Decol", serif;
+    font-size: 2rem;
 }
 
 #privacy {
@@ -53,11 +110,115 @@ section {
     margin-top: 30px;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
+.btn-dark {
+    background-color: var(--destaque);
+    border: 0 !important;
+    outline: 0 !important;
+
+}
+
+.btn-dark:hover {
+    background-color: var(--clara);
+    color: var(--destaque);
+    box-shadow: 0 5px 15px var(--destaque);
+    border: 0 !important;
+    outline: 0 !important;
+
+}
+
+.btn-dark:not(:disabled):not(.disabled):active,
+.btn-dark.active,
+.show>.btn-dark.dropdown-toggle {
+    background-color: var(--destaque) !important;
+    color: var(--clara) !important;
+    border-color: var(--clara) !important;
+    box-shadow: 0 5px 15px var(--destaque) !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+.btn-dark.focus,
+.btn-dark:focus {
+    box-shadow: var(--destaque) !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+.navbar-light .navbar-nav .nav-link.active {
+    color: var(--clara) !important;
+    border-bottom: 2px solid var(--clara);
+}
+
+
+.navbar-light .navbar-nav .nav-link {
+    color: var(--destaque);
+    transition: 0.2s;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: var(--clara);
+    background-color: rgba(0, 0, 0, 0);
+    /* mantém transparente */
+}
+
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link:active {
+    color: var(--clara) !important;
+    border-bottom: 2px solid var(--clara);
+    border: 0px;
+
+}
+
+.navbar-light .navbar-nav .nav-link:focus {
+    color: var(--clara);
+    outline: none;
+    border: 0px;
+
+}
+
+.navbar-toggler {
+    padding: .25rem .75rem;
+    font-size: 1.25rem;
+    line-height: 1;
+    background-color: transparent;
+    border: 0px solid transparent;
+    border-radius: .25rem;
+}
+
+.navbar-toggler:active {
+    background-color: var(--destaque);
+    border-color: var(--clara) !important;
+    box-shadow: 0 5px 15px var(--destaque) !important;
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+.navbar-toggler:focus {
+    border-color: none !important;
+    box-shadow: 0;
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='%23f26a6c' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E") !important;
+}
+
+
+.footer {
+    background-color: var(--clara) !important;
+    color: var(--escura) !important;
     padding: 20px 0;
     text-align: center;
+}
+
+.footer h6 {
+    color: var(--destaque) !important;
+
+}
+
+.footer a {
+    color: var(--escura) !important;
 }
 
 .footer {
@@ -65,8 +226,12 @@ footer {
 }
 
 .footer a:hover {
-    color: #aaa;
+    color: var(--destaque) !important;
     transition: color 0.2s ease;
+}
+
+.border-top {
+    border-color: var(--destaque) !important;
 }
 
 .social-icons a svg {
@@ -90,17 +255,10 @@ footer {
     justify-content: space-between;
 }
 
-.img-artist:hover {
-    opacity: 95%;
-    transform: scale(1.05);
-    transition: transform 0.2s ease;
-
-}
-
 .img-hover {
     position: relative;
     width: auto;
-    height: 500px;
+    height: 300px;
     overflow: hidden;
     border-radius: 0.25rem;
 }
@@ -114,6 +272,7 @@ footer {
     top: 0;
     left: 0;
 }
+
 
 .img-hovered {
     opacity: 0;
@@ -131,45 +290,16 @@ footer {
     display: none;
 }
 
-.read-more {
-    color: black;
+.ler-mais {
+    color: var(--destaque);
     cursor: pointer;
     text-decoration: none;
 }
 
-.read-more:hover {
-    color: gray;
+.ler-mais:hover {
+    color: var(--media);
     text-decoration: none;
 }
-
-.more-characters-text {
-    display: none;
-}
-
-.more-characters {
-    color: black;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.more-characters:hover {
-    color: gray;
-    text-decoration: none;
-}
-
-#intro {
-    height: 100vh;
-    /*animation: subtle-bounce 3s ease-in-out infinite;*/
-}
-
-/*@keyframes subtle-bounce {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}*/
 
 .scroll-down {
     position: absolute;
@@ -190,6 +320,30 @@ footer {
     animation: scroll 1.5s infinite;
 }
 
+/*icone*/
+
+.icon-wrapper {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto;
+    border-radius: 50%;
+    background: var(--clara);
+    color: var(--destaque);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.icon-wrapper i {
+    font-size: 2rem;
+}
+
+.card:hover .icon-wrapper {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--destaque);
+}
+
 @keyframes scroll {
     0% {
         transform: rotate(-45deg) translate(0, 0);
@@ -202,147 +356,8 @@ footer {
     }
 }
 
-.kitsune-bg {
-    position: relative;
-    background-image: url("../img/kitsune1-ansoen.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 10%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
 
-.kitsune-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-#kitsune {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.ninjin-bg {
-    position: relative;
-    background-image: url("../img/ninjin1-ansoen.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 15%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.ninjin-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-#ninjin {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.yuki-bg {
-    position: relative;
-    background-image: url("../img/yuki1-ansoen.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 15%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.yuki-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-#yuki {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.kai-bg {
-    position: relative;
-    background-image: url("../img/kai1-ansoen.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 20%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.kai-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-#kai {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.taka-bg {
-    position: relative;
-    background-image: url("../img/taka1-ansoen.png");
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: 50% 10%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
-
-.taka-bg::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35);
-}
-
-#taka {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-}
-
-.character-bottom {
+.produto-bottom {
     position: absolute;
     bottom: 0;
     left: 80%;
@@ -368,23 +383,6 @@ body.loaded {
     opacity: 1;
 }
 
-#loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: "Kaisei Decol", serif;
-    font-size: 2.5rem;
-    letter-spacing: 4px;
-    z-index: 9999;
-    animation: fadeOut 2s ease 2s forwards;
-}
 
 h1 {
     font-size: 3rem;
@@ -392,39 +390,33 @@ h1 {
 }
 
 /* Moblile ajust */
-
-/* YouTube video*/
-#social iframe {
-    width: 100%;
-    height: auto;
-    max-width: 560px;
-    aspect-ratio: 16 / 9;
-    display: block;
-    margin: 0 auto;
-}
-
 /* Small screen spacing */
 @media (max-width: 768px) {
 
-    #about {
-        height: auto;
+    #onde,
+    #sobre,
+    #contato,
+    #produto {
+        height: auto !important;
     }
 
     #home p {
         font-size: 1rem !important;
     }
 
-    #kitsune,
-    #ninjin,
-    #yuki,
-    #kai,
-    #taka {
-        height: 1000px;
+    #home {
+        padding: 0 1.5rem;
+        text-align: center;
+        justify-content: center;
     }
 
-    #character-img {
+    #home .home-content {
+        text-align: center;
+        /* Centraliza texto */
+    }
+
+    #produto-img {
         height: 400px;
-        padding-left: 100px;
     }
 
     .navbar-brand img {
@@ -436,7 +428,7 @@ h1 {
         padding: 0.5rem 1rem;
     }
 
-    #character .card {
+    #produto .card {
         width: 90%;
         margin: 0 auto;
     }
@@ -447,12 +439,125 @@ h1 {
     }
 
     h1 {
-        font-size: 1.8rem !important;
+        font-size: 1.5rem !important;
         /* força o tamanho no mobile */
     }
 
-    h2 {
-        font-size: large;
+}
+
+/* Área contendo tudo */
+.reviews-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 40px 0;
+}
+
+/* Track animando */
+.reviews-track {
+    display: flex;
+    gap: 40px;
+    animation: scrollLoop 30s linear infinite;
+}
+
+/* Animação de loop perfeito */
+@keyframes scrollLoop {
+    0% {
+        transform: translateX(0);
     }
 
+    100% {
+        transform: translateX(-50%);
+        /* Move metade, pois duplicamos os itens */
+    }
+}
+
+/* Card */
+.review-card {
+    min-width: 300px;
+    max-width: 320px;
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    border-left: 4px solid var(--destaque);
+}
+
+/* Textos */
+.review-text {
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.review-author {
+    font-size: 0.8rem;
+    color: #555;
+}
+
+/* ----- Degradês laterais ----- */
+.reviews-gradient-left,
+.reviews-gradient-right {
+    position: absolute;
+    top: 0;
+    width: 90px;
+    height: 100%;
+    pointer-events: none;
+    /* não atrapalha clique */
+    z-index: 3;
+}
+
+/* degradê da esquerda */
+.reviews-gradient-left {
+    left: 0;
+    background: linear-gradient(to right, rgba(247, 247, 247, 1), rgba(255, 255, 255, 0));
+}
+
+/* degradê da direita */
+.reviews-gradient-right {
+    right: 0;
+    background: linear-gradient(to left, rgba(247, 247, 247, 1), rgba(255, 255, 255, 0));
+}
+
+/*formulario*/
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border: 0 !important;
+    border-color: none !important;
+    box-shadow: 0 0px 10px var(--destaque) !important;
+}
+
+::placeholder {
+    color: var(--destaque) !important;
+    opacity: 60% !important;
+
+}
+
+/*whatsapp icone*/
+
+.whatsapp-float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 20px; /* distância do rodapé */
+    right: 20px;  /* distância da lateral direita */
+    background-color: #25D366; /* verde WhatsApp */
+    color: white;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.whatsapp-float:hover {
+    background-color: #20b858;
+    transform: scale(1.1);
+    color: white;
 }

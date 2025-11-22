@@ -9,25 +9,9 @@ $(".scroll-btn, .nav-link").on("click", function (event) {
     }
 });
 
-// form validation
-$("#contactForm").on("submit", function (e) {
-    e.preventDefault();
-    const name = $("#name").val().trim();
-    const email = $("#email").val().trim();
-    const message = $("#message").val().trim();
-
-    if (!name || !email || !message) {
-        $("#formMsg").fadeIn();
-    } else {
-        $("#formMsg").hide();
-        alert("Message sent successfully!");
-        this.reset();
-    }
-});
-
 //read more card
 $(document).ready(function(){
-  $(".read-more").click(function(e){
+  $(".ler-mais").click(function(e){
     e.preventDefault();
     const card = $(this).closest(".card");
     const moreText = card.find(".more-text");
@@ -36,29 +20,11 @@ $(document).ready(function(){
     if (moreText.is(":visible")) {
       // Ocultar
       moreText.slideUp(300);
-      $(this).text("read more...");
+      $(this).text("ler mais...");
     } else {
       // Exibir
       moreText.slideDown(300);
-      $(this).text("less...");
-    }
-  });
-});
-
-//load more character
-$(document).ready(function() {
-  $(".more-characters").click(function(e) {
-    e.preventDefault();
-
-    // Select after the div button
-    const moreSection = $(this).next(".more-characters-text");
-
-    if (moreSection.is(":visible")) {
-      moreSection.slideUp(400);
-      $(this).text("load more...");
-    } else {
-      moreSection.slideDown(400);
-      $(this).text("");
+      $(this).text("menos...");
     }
   });
 });
@@ -68,17 +34,99 @@ window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
 
-//image change
-const images = ["img/kitsune-ansoen.png", "img/ninjin-ansoen.png", "img/yuki-ansoen.png", "img/kai-ansoen.png", "img/taka-ansoen.png"];
-let index = 0;
-const img = document.getElementById("character-img");
+document.addEventListener("DOMContentLoaded", function () {
+  const navLinks = document.querySelectorAll(".navbar-nav .nav-link");
+  const sections = Array.from(document.querySelectorAll("section[id]"));
 
-setInterval(() => {
-  img.style.opacity = 0;
-  setTimeout(() => {
-    index = (index + 1) % images.length;
-    img.src = images[index];
-    img.style.opacity = 1;
-  }, 1000);
-}, 5000);
+  // Mapear id -> link
+  const linkById = {};
+  navLinks.forEach(link => {
+    const href = link.getAttribute("href");
+    if (!href.includes("#")) return;
+    const hash = href.substring(href.indexOf("#"));
+    linkById[hash] = link;
+  });
 
+  // Remove .active de todos os links
+  function clearActive() {
+    navLinks.forEach(link => link.classList.remove("active"));
+  }
+
+  // Ativa link correspondente ao hash
+  function setActive(hash) {
+    clearActive();
+    if (linkById[hash]) linkById[hash].classList.add("active");
+  }
+
+  // Clique nos links (scroll suave)
+  navLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      const href = link.getAttribute("href");
+      if (!href.startsWith("#")) return;
+
+      e.preventDefault();
+      const targetId = href.substring(href.indexOf("#") + 1);
+      const target = document.getElementById(targetId);
+      if (!target) return;
+
+      // Scroll suave
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Ativa o link temporariamente
+      clearActive();
+      link.classList.add("active");
+    });
+  });
+
+  // Função spy-scroll: ativa o link da seção visível e desativa os outros
+  function onScroll() {
+    const scrollY = window.scrollY;
+    let currentSection = null;
+
+    sections.forEach(section => {
+      const top = section.offsetTop - 100; // pequeno offset
+      const bottom = top + section.offsetHeight;
+
+      if (scrollY >= top && scrollY < bottom) {
+        currentSection = "#" + section.id;
+      }
+    });
+
+    if (currentSection) {
+      setActive(currentSection);
+    }
+  }
+
+  // Evento de scroll
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Executa no carregamento inicial
+  onScroll();
+});
+
+//pop up imagens
+let currentImages = [];
+let currentIndex = 0;
+
+$('#imageModal').on('show.bs.modal', function (event) {
+  const button = $(event.relatedTarget); // link que abriu o modal
+  currentImages = button.data('images'); // pega as imagens do card
+  currentIndex = 0;
+  $('#modalImage').attr('src', currentImages[currentIndex]);
+});
+
+// Botão próximo
+$('#nextImage').click(function(){
+  if(currentImages.length > 1){
+    currentIndex = (currentIndex + 1) % currentImages.length;
+    $('#modalImage').attr('src', currentImages[currentIndex]);
+  }
+});
+
+// Botão anterior
+$('#prevImage').click(function(){
+  if(currentImages.length > 1){
+    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+    $('#modalImage').attr('src', currentImages[currentIndex]);
+  }
+});

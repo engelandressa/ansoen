@@ -9,22 +9,6 @@ $(".scroll-btn, .nav-link").on("click", function (event) {
     }
 });
 
-// form validation
-$("#contactForm").on("submit", function (e) {
-    e.preventDefault();
-    const name = $("#name").val().trim();
-    const email = $("#email").val().trim();
-    const message = $("#message").val().trim();
-
-    if (!name || !email || !message) {
-        $("#formMsg").fadeIn();
-    } else {
-        $("#formMsg").hide();
-        alert("Message sent successfully!");
-        this.reset();
-    }
-});
-
 //read more card
 $(document).ready(function(){
   $(".read-more").click(function(e){

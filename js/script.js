@@ -66,3 +66,14 @@ setInterval(() => {
   }, 1000);
 }, 5000);
 
+//from sent
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("sent") === "1") {
+        document.getElementById("sentPopup").style.display = "block";
+
+        // limpa o parâmetro da URL
+        history.replaceState(null, "", window.location.pathname);
+    }
+});
+

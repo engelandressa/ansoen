@@ -9,6 +9,21 @@ $(".scroll-btn, .nav-link").on("click", function (event) {
     }
 });
 
+//navbar hide mobile
+document.addEventListener("DOMContentLoaded", function () {
+  const navLinks = document.querySelectorAll(".navbar-collapse .nav-link");
+  const navbarCollapse = document.querySelector(".navbar-collapse");
+
+  navLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      // Fecha o menu hamburguer caso esteja aberto
+      if (navbarCollapse.classList.contains("show")) {
+        $('.navbar-collapse').collapse('hide');
+      }
+    });
+  });
+});
+
 //read more card
 $(document).ready(function(){
   $(".read-more").click(function(e){
